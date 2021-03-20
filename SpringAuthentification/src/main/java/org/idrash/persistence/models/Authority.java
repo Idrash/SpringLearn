@@ -7,7 +7,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "authority")
-public class Authority implements GrantedAuthority {
+public class Authority{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
@@ -20,7 +20,7 @@ public class Authority implements GrantedAuthority {
         this.authority = authority;
     }
 
-    @Override
+
     public String getAuthority() {
         return authority;
     }

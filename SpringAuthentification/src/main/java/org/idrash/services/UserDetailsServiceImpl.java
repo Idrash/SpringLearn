@@ -1,5 +1,6 @@
 package org.idrash.services;
 
+import org.idrash.config.security.models.CustomUserDetails;
 import org.idrash.persistence.models.User;
 import org.idrash.persistence.repository.UserRepository;
 import org.slf4j.Logger;
@@ -29,6 +30,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         log.info("loadUserByUsername() : {}", username);
 
-        return user;
+        return new CustomUserDetails(user);
     }
 }

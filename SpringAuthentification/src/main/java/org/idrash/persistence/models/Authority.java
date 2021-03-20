@@ -9,7 +9,7 @@ import java.util.Objects;
 @Table(name = "authority")
 public class Authority{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String authority;

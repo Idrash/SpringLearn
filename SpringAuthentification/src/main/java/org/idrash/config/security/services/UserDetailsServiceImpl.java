@@ -1,4 +1,4 @@
-package org.idrash.services;
+package org.idrash.config.security.services;
 
 import org.idrash.config.security.models.CustomUserDetails;
 import org.idrash.persistence.models.User;

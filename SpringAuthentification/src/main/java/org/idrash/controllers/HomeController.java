@@ -28,46 +28,26 @@ public class HomeController {
     @Autowired
     BCryptPasswordEncoder encoder;
 
-    @PostConstruct
-    public void init(){
-        //initialisation temporaire de l'utilisateur
-        User user = new User();
-        user.setUsername("admin");
-        user.setPassword(encoder.encode("admin"));
-        Authority authority = new Authority();
-        authority.setAuthority("ADMIN");
-        authority.setId(1);
-        authorityRepository.save(authority);
-        authority = authorityRepository.getOne(1);
-        Set<Authority> perms = new HashSet<>();
-        perms.add(authority);
-        System.out.println(authority.getAuthority()+" : "+authority.getId());
-//        user.setAuthorities(perms); //not work
-        userRepository.save(user);
-
-
-    }
-
 
     @RequestMapping(value = "/")
     @ResponseBody
-    public String getRessource(){
+    public String getRessource() {
         return "hello world";
     }
 
     @RequestMapping(value = "/role")
     @ResponseBody
-    public String setRole(){
+    public String setRole() {
         Authority authority = authorityRepository.getOne(1);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        User user =userRepository.findByUsername(authentication.getName());
-        if(user==null){
+        User user = userRepository.findByUsername(authentication.getName());
+        if (user == null) {
             return "user not found";
         }
         user.getAuthorities().add(authority);
         userRepository.save(user);
-        return "role "+authority.getAuthority()+" to the user : "+user.getUsername();
+        return "role " + authority.getAuthority() + " to the user : " + user.getUsername();
     }
 
 
